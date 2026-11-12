@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #87CEEB; /* Sky blue */
+    font-family: 'Nunito', sans-serif;
+    overflow: hidden; /* For digital signage, no scroll */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    background: radial-gradient(circle, #fffdf2 0%, #87CEEB 100%);
+}
+
+.logo {
+    font-family: 'Fredoka One', cursive;
+    font-size: 8vw;
+    color: #FF5722;
+    text-shadow: 4px 4px 0px #FFF, 8px 8px 0px #FFEB3B;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+    animation: bounce 2s infinite alternate ease-in-out;
+}
+
+.subtitle {
+    font-size: 3vw;
+    color: #E91E63;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.coming-soon {
+    font-family: 'Fredoka One', cursive;
+    font-size: 6vw;
+    color: #4CAF50;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0px #FFF;
+    animation: pulse 1.5s infinite;
+}
+
+.message {
+    font-size: 2.5vw;
+    color: #3F51B5;
+    line-height: 1.5;
+    max-width: 80%;
+    margin: 0 auto;
+    font-weight: 700;
+}
+
+/* Animations */
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Decorations */
+.decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.balloon {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    background-color: #FFEB3B;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    bottom: -100px;
+    animation: floatUp 10s infinite linear;
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 40px;
+    background-color: #FFF;
+}
+
+.b1 { left: 10%; background-color: #E91E63; animation-delay: 0s; animation-duration: 12s; }
+.b2 { left: 80%; background-color: #03A9F4; animation-delay: 3s; animation-duration: 15s; }
+.b3 { left: 50%; background-color: #FFEB3B; animation-delay: 6s; animation-duration: 10s; }
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
+}
+
+.block {
+    position: absolute;
+    width: 8vw;
+    height: 8vw;
+    max-width: 100px;
+    max-height: 100px;
+    background-color: #4CAF50;
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid #FFF;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+    animation: spin 8s infinite linear;
+}
+
+.block.b-2 { background-color: #FF9800; top: 20%; left: 10%; animation-direction: reverse; animation-duration: 12s;}
+.block.b-3 { background-color: #9C27B0; top: 15%; right: 15%; animation-duration: 10s;}
+.block:not(.b-2):not(.b-3) { background-color: #00BCD4; bottom: 25%; left: 20%; animation-duration: 14s;}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Train animation at bottom */
+.train-container {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    overflow: hidden;
+    height: 100px;
+}
+
+.train {
+    display: flex;
+    font-size: 60px;
+    position: absolute;
+    left: -500px;
+    animation: drive 15s infinite linear;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+}
+
+.car, .engine {
+    margin-right: 20px;
+}
+
+@keyframes drive {
+    0% { left: -500px; }
+    100% { left: 100vw; }
+}
+
+header, main {
+    z-index: 10;
+    position: relative;
+    padding: 0 20px;
+}
+
+/* Responsive adjustments */
+@media (orientation: portrait) {
+    .logo { font-size: 14vw; }
+    .subtitle { font-size: 5vw; }
+    .coming-soon { font-size: 10vw; }
+    .message { font-size: 4.5vw; }
+    .block { width: 12vw; height: 12vw; font-size: 8vw; }
+}
